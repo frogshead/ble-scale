@@ -1,6 +1,7 @@
 // MAC provided by HCI tool
 // sudo hcitool lescan
 // C8:47:8C:D1:7F:DC MI SCALE2
+// https://github.com/oliexdev/openScale/wiki/Xiaomi-Bluetooth-Mi-Scale
 
 extern crate btleplug;
 
