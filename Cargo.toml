@@ -7,4 +7,11 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-btleplug = "0.4.0"
+btleplug = "0.9.1"
+dotenv = "0.15.0"
+simple_logger = "1.11.0"
+log = "0.4"
+influx_db_client = "0.5"
+tokio = { version = "1.15.0", features = ["rt", "sync", "macros", "rt-multi-thread"] }
+tokio-stream = { version = "0.1.8", features = ["sync"] }
+time = { version = "0.3.5", features = ["local-offset", "std"]}
