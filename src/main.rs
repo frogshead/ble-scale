@@ -5,27 +5,19 @@
 
 //extern crate btleplug;
 
+use std::convert::TryFrom;
+use std::vec;
 use std::{error::Error, str::FromStr};
+use btleplug::api::bleuuid::BleUuid;
 use log::{info, error, debug, trace};
 use time::{OffsetDateTime, UtcOffset};
-// use std::thread;
-// use std::time::Duration;
 
-use btleplug::api::{bleuuid::BleUuid, BDAddr, Central, CentralEvent, Manager as _, ScanFilter};
-#[cfg(target_os = "linux")]
-use btleplug::platform::{Adapter, Manager};
-#[cfg(target_os = "macos")]
-use btleplug::corebluetooth::{adapter::Adapter, manager::Manager};
-#[cfg(target_os = "windows")]
-use btleplug::winrtble::{adapter::Adapter, manager::Manager};
+use btleplug::api::{bleuuid, Central, Manager as _, Peripheral as _, BDAddr, ScanFilter, CentralEvent};
+use btleplug::platform::{Adapter, Manager, Peripheral};
 use dotenv;
 use simple_logger::SimpleLogger;
-
 use influx_db_client::{Client, Point, Value, point};
 use tokio_stream::StreamExt;
-
-// adapter retrieval works differently depending on your platform right now.
-// API needs to be aligned.
 
 async fn get_central(manager: &Manager) -> Adapter {
     let adapters = manager.adapters().await.unwrap();
@@ -44,7 +36,11 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     // let scale = central.peripheral(mac);
     // start scanning for devices
-    central.start_scan(ScanFilter::default()).await.unwrap();
+    let mut uuid = uuid::Uuid::parse_str("0000181d-0000-1000-8000-00805f9b34fb").unwrap(); 
+    let mut v = vec![uuid];
+    let mut filter = ScanFilter::default();
+    filter.services.append(&mut v);
+    central.start_scan(filter).await.unwrap();
 
     // Print based on whatever the event receiver outputs. Note that the event
     // receiver blocks, so in a real program, this should be run in its own
@@ -56,15 +52,16 @@ async fn main() -> Result<(), Box<dyn Error>> {
                 service_data,
             } => {
                 // if mac == address {
-                
+
+                    //service data advertisement id: PeripheralId(DeviceId { object_path: Path("/org/bluez/hci0/dev_C8_47_8C_D1_7F_DC\u{0}") }) data: [130, 232, 3, 178, 7, 1, 1, 22, 8, 45]
                     // let w: u16 = (service_data[2]) << 8 | service_data[1];
                     // log::debug!("Weight: {:?} kg", (w as f32 / 200.00));
-                    log::debug!("service data advertisement id: {:?} data: {:?}",id,  service_data);
+                    log::debug!("service data advertisement id: {:?} data: {:?}",id,  service_data.values());
                 // }
             },
             CentralEvent::DeviceDiscovered(id) => {log::debug!("Device Discovered: {:?}", id)},
             CentralEvent::ManufacturerDataAdvertisement{id, manufacturer_data } => {log::debug!("id: {:?}  manu data: {:?}", id, manufacturer_data)}
-            _ => { log::debug!("Non Handled event")}
+            _ => { log::debug!("Non handled event") }
         }
     }
     // match scale {

@@ -1,0 +1,21 @@
+[Characteristic { start_handle: 2, end_handle: 65535, value_handle: 3, uuid: 2A: 00, properties: READ | WRITE
+    }, Characteristic { start_handle: 4, end_handle: 65535, value_handle: 5, uuid: 2A: 01, properties: READ | WRITE
+    }, Characteristic { start_handle: 6, end_handle: 65535, value_handle: 7, uuid: 2A: 02, properties: READ
+    }, Characteristic { start_handle: 8, end_handle: 65535, value_handle: 9, uuid: 2A: 04, properties: READ
+    }, Characteristic { start_handle: 11, end_handle: 65535, value_handle: 12, uuid: 2A: 05, properties: READ | INDICATE
+    }, Characteristic { start_handle: 15, end_handle: 65535, value_handle: 16, uuid: 2A: 25, properties: READ
+    }, Characteristic { start_handle: 17, end_handle: 65535, value_handle: 18, uuid: 2A: 27, properties: READ
+    }, Characteristic { start_handle: 19, end_handle: 65535, value_handle: 20, uuid: 2A: 28, properties: READ
+    }, Characteristic { start_handle: 21, end_handle: 65535, value_handle: 22, uuid: 2A: 23, properties: READ
+    }, Characteristic { start_handle: 23, end_handle: 65535, value_handle: 24, uuid: 2A: 50, properties: READ
+    }, Characteristic { start_handle: 26, end_handle: 65535, value_handle: 27, uuid: 2A: 2B, properties: READ | WRITE
+    }, Characteristic { start_handle: 28, end_handle: 65535, value_handle: 29, uuid: 2A:9E, properties: READ
+    }, Characteristic { start_handle: 30, end_handle: 65535, value_handle: 31, uuid: 2A: 9D, properties: INDICATE
+    }, Characteristic { start_handle: 33, end_handle: 65535, value_handle: 34, uuid: 00: 00: 2A: 2F: 00: 00: 35: 12: 21: 18: 00: 09:AF: 10: 07: 00, properties: WRITE | NOTIFY
+    }, Characteristic { start_handle: 37, end_handle: 65535, value_handle: 38, uuid: 00: 00: 15: 31: 00: 00: 35: 12: 21: 18: 00: 09:AF: 10: 07: 00, properties: WRITE | NOTIFY
+    }, Characteristic { start_handle: 40, end_handle: 65535, value_handle: 41, uuid: 00: 00: 15: 32: 00: 00: 35: 12: 21: 18: 00: 09:AF: 10: 07: 00, properties: WRITE_WITHOUT_RESPONSE
+    }, Characteristic { start_handle: 42, end_handle: 65535, value_handle: 43, uuid: 2A: 04, properties: READ | WRITE | NOTIFY
+    }, Characteristic { start_handle: 45, end_handle: 65535, value_handle: 46, uuid: 00: 00: 15: 42: 00: 00: 35: 12: 21: 18: 00: 09:AF: 10: 07: 00, properties: READ | WRITE | NOTIFY
+    }, Characteristic { start_handle: 48, end_handle: 65535, value_handle: 49, uuid: 00: 00: 15: 43: 00: 00: 35: 12: 21: 18: 00: 09:AF: 10: 07: 00, properties: READ | WRITE | NOTIFY
+    }
+]
