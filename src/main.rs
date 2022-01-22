@@ -58,10 +58,9 @@ async fn main() -> Result<(), Box<dyn Error>> {
                 // if mac == address {
                 
                     // let w: u16 = (service_data[2]) << 8 | service_data[1];
-                    // let w: u16 = (service_data[2]) << 8 | service_data[1];
                     // log::debug!("Weight: {:?} kg", (w as f32 / 200.00));
-                    log::debug!("id: {:?} data: {:?}",id,  service_data);
-                //}
+                    log::debug!("service data advertisement id: {:?} data: {:?}",id,  service_data);
+                // }
             },
             CentralEvent::DeviceDiscovered(id) => {log::debug!("Device Discovered: {:?}", id)},
             CentralEvent::ManufacturerDataAdvertisement{id, manufacturer_data } => {log::debug!("id: {:?}  manu data: {:?}", id, manufacturer_data)}
