@@ -36,7 +36,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     // let scale = central.peripheral(mac);
     // start scanning for devices
-    let mut uuid = uuid::Uuid::parse_str("0000181d-0000-1000-8000-00805f9b34fb").unwrap(); 
+    let uuid = uuid::Uuid::parse_str("0000181d-0000-1000-8000-00805f9b34fb").unwrap(); 
     let mut v = vec![uuid];
     let mut filter = ScanFilter::default();
     filter.services.append(&mut v);
@@ -51,16 +51,13 @@ async fn main() -> Result<(), Box<dyn Error>> {
                 id,
                 service_data,
             } => {
-                // if mac == address {
-
-                    //service data advertisement id: PeripheralId(DeviceId { object_path: Path("/org/bluez/hci0/dev_C8_47_8C_D1_7F_DC\u{0}") }) data: [130, 232, 3, 178, 7, 1, 1, 22, 8, 45]
-                    // let w: u16 = (service_data[2]) << 8 | service_data[1];
-                    // log::debug!("Weight: {:?} kg", (w as f32 / 200.00));
                     log::debug!("service data advertisement id: {:?} data: {:?}",id,  service_data.values());
-                // }
+                    let data = service_data.get(&uuid).unwrap();
+                    let w: f32 = ((data[2] as u16) << 8 | data[1] as u16) as f32 / 200.0;
+                    log::debug!("Weight: {:?} kg", w);
             },
             CentralEvent::DeviceDiscovered(id) => {log::debug!("Device Discovered: {:?}", id)},
-            CentralEvent::ManufacturerDataAdvertisement{id, manufacturer_data } => {log::debug!("id: {:?}  manu data: {:?}", id, manufacturer_data)}
+            CentralEvent::ManufacturerDataAdvertisement{id, manufacturer_data } => {log::info!("id: {:?}  manu data: {:?}", id, manufacturer_data)}
             _ => { log::debug!("Non handled event") }
         }
     }
