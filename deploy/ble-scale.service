@@ -5,11 +5,11 @@ Wants=bluetooth.target
 
 [Service]
 Type=simple
-User=pi
+User=mikko
 Group=bluetooth
-WorkingDirectory=/home/pi/ble-scale
-EnvironmentFile=/home/pi/ble-scale/.env
-ExecStart=/home/pi/ble-scale/ble-scale
+WorkingDirectory=/home/mikko/ble-scale
+EnvironmentFile=/home/mikko/ble-scale/.env
+ExecStart=/home/mikko/ble-scale/ble-scale
 Restart=always
 RestartSec=30s
 StandardOutput=journal
