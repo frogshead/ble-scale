@@ -1,18 +1,23 @@
 [package]
 name = "ble-scale"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Mikko Viitamäki <mikko.vitamaki@gmail.com>"]
-edition = "2018"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+edition = "2021"
 
 [dependencies]
-btleplug = "0.9.1"
-dotenv = "0.15.0"
-simple_logger = "1.11.0"
+btleplug = "0.11"
+dotenv = "0.15"
+simple_logger = "4"
 log = "0.4"
-influx_db_client = "0.5"
-tokio = { version = "1.15.0", features = ["rt", "sync", "macros", "rt-multi-thread"] }
-tokio-stream = { version = "0.1.8", features = ["sync"] }
-time = { version = "0.3.5", features = ["local-offset", "std"]}
-uuid = "0.8.2"
+tokio = { version = "1", features = ["rt", "sync", "macros", "rt-multi-thread", "time"] }
+tokio-stream = { version = "0.1", features = ["sync"] }
+time = { version = "0.3", features = ["formatting"] }
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls"] }
+thiserror = "1"
+uuid = "1"
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+strip = true

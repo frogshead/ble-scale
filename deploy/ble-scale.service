@@ -1,0 +1,22 @@
+[Unit]
+Description=BLE Scale Reader
+After=network.target bluetooth.target
+Wants=bluetooth.target
+
+[Service]
+Type=simple
+User=pi
+Group=bluetooth
+WorkingDirectory=/home/pi/ble-scale
+EnvironmentFile=/home/pi/ble-scale/.env
+ExecStart=/home/pi/ble-scale/ble-scale
+Restart=always
+RestartSec=30s
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=ble-scale
+AmbientCapabilities=CAP_NET_RAW CAP_NET_ADMIN
+CapabilityBoundingSet=CAP_NET_RAW CAP_NET_ADMIN
+
+[Install]
+WantedBy=multi-user.target
